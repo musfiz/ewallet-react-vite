@@ -1,16 +1,39 @@
+import Login from "./layouts/Login";
+import Index from "./layouts/Index";
 import { useState } from "react";
 
-const App = () => {
-  const [counter, setCounter] = useState(0);
+const SignIn = () => {
   return (
     <>
-      <button onClick={() => setCounter((prevCounter) => prevCounter - 1)}>
-        -
-      </button>
-      <h2>{counter}</h2>
-      <button onClick={() => setCounter((prevCounter) => prevCounter + 1)}>
-        +
-      </button>
+      <Login />
+    </>
+  );
+};
+
+const Dashboard = () => {
+  return (
+    <>
+      <Index />
+    </>
+  );
+};
+
+const App = () => {
+  const [isLoggedIn] = useState(false);
+  if (isLoggedIn) {
+    return (
+      <>
+        <main role="main" className="container">
+          <div className="d-flex align-items-center p-3 my-3 bg-white rounded shadow-sm">
+            <Dashboard />
+          </div>
+        </main>
+      </>
+    );
+  }
+  return (
+    <>
+      <SignIn />
     </>
   );
 };
