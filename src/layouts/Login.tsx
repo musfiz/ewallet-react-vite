@@ -5,62 +5,55 @@ const Login = () => {
         <form action="#" method="post">
           <h1
             className="h3 mb-3 font-weight-normal"
-            style={{ alignItems: "center" }}
+            style={{ textAlign: "center" }}
           >
             {" "}
             E-Wallet
           </h1>
 
           <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span
-                className="input-group-text"
-                style={{ padding: "0px 26px" }}
-              >
-                Email
-              </span>
-            </div>
+            <span
+              className="input-group-text"
+              id="email"
+              style={{ padding: "0 26px" }}
+            >
+              Email
+            </span>
             <input
-              type="email"
-              name="email"
+              type="text"
               className="form-control"
-              required
-              autofocus
               placeholder="Email"
-              value=""
+              aria-label="Email"
+              aria-describedby="email"
             />
-
-            {/* <div className="invalid-feedback">
-              
-          </div> */}
           </div>
-
           <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text">Password</span>
-            </div>
+            <span
+              className="input-group-text"
+              id="Password"
+              style={{ padding: "0 11px" }}
+            >
+              Passowrd
+            </span>
             <input
-              type="password"
-              name="password"
+              type="text"
               className="form-control"
-              required
               placeholder="Password"
+              aria-label="Password"
+              aria-describedby="Password"
             />
-            {/* @if ($errors->has('password'))
-            <div className="invalid-feedback">
-                {{ $errors->first('password') }}
-            </div>
-          @endif */}
+          </div>
+          <div className="d-grid">
+            <button className="btn btn-success btn-flat" type="submit">
+              <i className="fas fa-sign-in-alt"></i> Sign in
+            </button>
           </div>
 
-          <button className="btn btn-success btn-block" type="submit">
-            <i className="fas fa-sign-in-alt"></i> Sign in
-          </button>
           <hr />
         </form>
 
         <a
-          className="btn btn-primary btn-block disabled"
+          className="btn btn-primary btn-flat disabled"
           title="This feature currently not available"
         >
           <i className="fas fa-user-plus"></i> Sign up New Account
@@ -70,7 +63,7 @@ const Login = () => {
       <footer className="footer text-center">
         <div className="container">
           <p className="text-muted">
-            Copyright &copy 2023, E Wallet
+            Copyright © 2023, E Wallet
             <br />
             Created by{" "}
             <a target="_blank" href="http://mustafiz.info">
