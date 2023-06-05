@@ -10,7 +10,7 @@ const SignIn = () => {
   );
 };
 
-const Dashboard = () => {
+const Admin = () => {
   return (
     <>
       <Index />
@@ -19,15 +19,11 @@ const Dashboard = () => {
 };
 
 const App = () => {
-  const [isLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(true);
   if (isLoggedIn) {
     return (
       <>
-        <main role="main" className="container">
-          <div className="d-flex align-items-center p-3 my-3 bg-white rounded shadow-sm">
-            <Dashboard />
-          </div>
-        </main>
+        <Admin />
       </>
     );
   }
