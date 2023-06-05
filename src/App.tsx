@@ -2,7 +2,7 @@ import Login from "./layouts/Login";
 import Index from "./layouts/Index";
 import { useState } from "react";
 
-const SignIn = () => {
+const LoginPage = () => {
   return (
     <>
       <Login />
@@ -10,7 +10,7 @@ const SignIn = () => {
   );
 };
 
-const Admin = () => {
+const AdminPage = () => {
   return (
     <>
       <Index />
@@ -23,13 +23,13 @@ const App = () => {
   if (isLoggedIn) {
     return (
       <>
-        <Admin />
+        <AdminPage />
       </>
     );
   }
   return (
     <>
-      <SignIn />
+      <LoginPage />
     </>
   );
 };

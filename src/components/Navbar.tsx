@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
@@ -17,10 +18,10 @@ const Navbar = () => {
         <div className="navbar-collapse offcanvas-collapse" id="navbarsDefault">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="">
+              <Link className="nav-link" to="/dashboard">
                 <FontAwesomeIcon icon="fa-tachometer-alt" /> Dashboard
                 <span className="sr-only">(current)</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -98,9 +99,9 @@ const Navbar = () => {
                 <a className="dropdown-item" href="#">
                   <FontAwesomeIcon icon="fa-info-circle" /> Profile
                 </a>
-                <a className="dropdown-item" href="">
+                <Link className="dropdown-item" to="/feedback">
                   <FontAwesomeIcon icon="fa-comment" /> Feedback
-                </a>
+                </Link>
                 <div role="separator" className="dropdown-divider"></div>
                 <a className="dropdown-item" href="">
                   <FontAwesomeIcon icon="fa-database" /> DB Backup
