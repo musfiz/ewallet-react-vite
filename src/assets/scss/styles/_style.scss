@@ -7,28 +7,31 @@ body {
 
 html,
 body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
+  overflow-x: hidden;
+  /* Prevent scroll on narrow devices */
 }
 
 body {
   padding-top: 56px;
 }
 
-.bg-dark{
+.bg-dark {
   background-color: #295786 !important;
 }
-.bg-light{
+
+.bg-light {
   background-color: #f8f9fa !important;
 }
+
 .navbar-dark .navbar-nav .nav-link {
-  color: hsla(0, 0%, 100%, 0.822);
-  @include font_style(14px,hsla(0, 0%, 100%, 0.822), 400)
+  @include font_style(14px, hsla(0, 0%, 100%, 0.822), 400)
 }
 
 @media (max-width: 992px) {
   .offcanvas-collapse {
     position: fixed;
-    top: 56px; /* Height of navbar */
+    top: 56px;
+    /* Height of navbar */
     bottom: 0;
     left: 100%;
     width: 100%;
@@ -41,17 +44,31 @@ body {
     transition-duration: .3s;
     transition-property: left, visibility;
   }
+
   .offcanvas-collapse.open {
     left: 0;
     visibility: visible;
   }
 }
 
-.navbar{
-  padding: 0.5rem 1rem;
-  .navbar-brand{
+.navbar {
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+
+  .navbar-brand {
     font-size: 1.125rem;
+    width: 49%;
+  }
+
+  .navbar-nav {
+    .nav-item {
+      .nav-link{
+        font-weight: 500;
+      }
+      .dropdown-item {
+        font-size: 14px;
+      }
+    }
   }
 }
-
-
