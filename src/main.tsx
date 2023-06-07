@@ -6,8 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@popperjs/core";
 import "bootstrap";
 import "./assets/scss/app.scss";
-import "./assets/fonts/Roboto-Regular.ttf";
-// import "./assets/fonts/JetBrainsMonoNL-Regular.ttf";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";

@@ -93,7 +93,7 @@ const Navbar = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <FontAwesomeIcon icon="fa-sign-in-alt" /> Mustafizur Rahman
+                <FontAwesomeIcon icon="fa-power-off" /> Mustafizur Rahman
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdown">
                 <a className="dropdown-item" href="#">
