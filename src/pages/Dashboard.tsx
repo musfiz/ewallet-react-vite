@@ -1,4 +1,31 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DataTable from "react-data-table-component";
+
+const columns = [
+  {
+    name: "Title",
+    selector: (row) => row.title,
+    sortable: true,
+  },
+  {
+    name: "Year",
+    selector: (row) => row.year,
+    sortable: true,
+  },
+];
+
+const data = [
+  {
+    id: 1,
+    title: "Beetlejuice",
+    year: "1988",
+  },
+  {
+    id: 2,
+    title: "Ghostbusters",
+    year: "1984",
+  },
+];
 
 const Dashboard = () => {
   return (
@@ -81,6 +108,10 @@ const Dashboard = () => {
           </div>
         </div>
         <hr />
+
+        {/* DataTable */}
+        <DataTable pagination columns={columns} data={data} selectableRows />
+        {/* DataTable */}
       </div>
     </>
   );
