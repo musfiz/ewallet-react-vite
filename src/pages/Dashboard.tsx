@@ -4,29 +4,104 @@ import { Link } from "react-router-dom";
 
 const columns = [
   {
-    name: "Title",
-    selector: (row) => row.title,
-    sortable: true,
+    name: "SI.",
+    cell: (row, index) => index + 1,
+    width: "5%",
   },
   {
-    name: "Year",
-    selector: (row) => row.year,
+    name: "Amount",
+    selector: (row) => row.amount,
     sortable: true,
+    width: "10%",
+    style: {
+      justifyContent: "flex-end",
+    },
+  },
+  {
+    name: "Date",
+    selector: (row) => row.date,
+    sortable: true,
+    width: "12%",
+    style: {
+      justifyContent: "center",
+    },
+  },
+  {
+    name: "Time",
+    selector: (row) => row.time,
+    width: "10%",
+  },
+  {
+    name: "Note",
+    selector: (row) => row.note,
+    style: {
+      width: "500px",
+      display: "inline-block",
+    },
+  },
+  {
+    name: "Action",
+    // button: true,
+    width: "10%",
+    // cell: () => {},
   },
 ];
 
 const data = [
   {
     id: 1,
-    title: "Beetlejuice",
-    year: "1988",
+    note: "Bike Wheel = 120/-, Breakfast = 55/-, Ox = 120/-, Sopno = 1005/-, Killer food = 280/-, Onion= 350/-, Potato = 120/-, Vegetable = 100/-, Chili = 20/-, Banana = 80/-, flour = 130/-, Mim daraz = 1362/-, Bike oil = 650/-, Shayan Cake = 2000/-, Mim Loan = 200, Shayan Horse = 700/-, Mim = 500/-, Daraz = 693/-.",
+    amount: "8457",
+    date: "07 May, 2023",
+    time: "05:30 PM",
+    type: "expense",
   },
   {
     id: 2,
-    title: "Ghostbusters",
-    year: "1984",
+    note: "BJIT April Salary (credit to ewallet) = 72000/-.",
+    amount: "72000",
+    date: "",
+    time: "",
+    type: "income",
   },
 ];
+
+const customStyles = {
+  tableWrapper: {
+    style: {
+      display: "table",
+      borderLeft: "1px solid #c5c5c5",
+      borderRight: "1px solid #c5c5c5",
+    },
+  },
+  headRow: {
+    style: {
+      background: "#5f5f5f",
+      color: "#ffffff",
+      fontSize: "13px",
+      fontWeight: "bold",
+    },
+  },
+  headCells: {
+    style: {
+      "&:not(:last-of-type)": {
+        borderRightStyle: "solid",
+        borderRightWidth: "1px",
+        borderRightColor: "#c5c5c5",
+      },
+      justifyContent: "center",
+    },
+  },
+  cells: {
+    style: {
+      "&:not(:last-of-type)": {
+        borderRightStyle: "solid",
+        borderRightWidth: "1px",
+        borderRightColor: "#c5c5c5",
+      },
+    },
+  },
+};
 
 const Dashboard = () => {
   return (
@@ -111,11 +186,21 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <hr />
-
-        {/* DataTable */}
-        <DataTable pagination columns={columns} data={data} selectableRows />
-        {/* DataTable */}
+        <div className="row">
+          <div className="col-12">
+            {/* DataTable */}
+            <DataTable
+              className="mt-5"
+              pagination
+              columns={columns}
+              data={data}
+              selectableRows
+              customStyles={customStyles}
+              dense
+            />
+            {/* DataTable */}
+          </div>
+        </div>
       </div>
     </>
   );
