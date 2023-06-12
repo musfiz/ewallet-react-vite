@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DataTable from "react-data-table-component";
+import { Link } from "react-router-dom";
 
 const columns = [
   {
@@ -61,9 +62,12 @@ const Dashboard = () => {
         </div>
         <div className="row mt-4 justify-content-between">
           <div className="col">
-            <button className="btn btn-success btn-sm btn-flat me-1">
+            <Link
+              className="btn btn-success btn-sm btn-flat me-1"
+              to="/transaction/add"
+            >
               <FontAwesomeIcon icon="fa-plus" /> Add Transaction
-            </button>
+            </Link>
             <button className="btn btn-primary btn-sm btn-flat">
               <FontAwesomeIcon icon="fa-file-pdf" /> PDF
             </button>

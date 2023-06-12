@@ -35,12 +35,12 @@ const Navbar = () => {
                 <FontAwesomeIcon icon="fa-hand-holding-usd" /> Received/Given
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdown01">
-                <a className="dropdown-item" href="">
+                <Link className="dropdown-item" to="/loan/payout">
                   <FontAwesomeIcon icon="fa-money-bill-alt" /> Loan Payout
-                </a>
-                <a className="dropdown-item" href="#">
+                </Link>
+                <Link className="dropdown-item" to="/lend/receive">
                   <FontAwesomeIcon icon="fa-credit-card" /> Lend Received
-                </a>
+                </Link>
               </div>
             </li>
             <li className="nav-item dropdown">
@@ -55,9 +55,9 @@ const Navbar = () => {
                 <FontAwesomeIcon icon="fa-history" /> History
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdown">
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/">
                   <FontAwesomeIcon icon="fa-exchange-alt" /> Transaction History
-                </a>
+                </Link>
               </div>
             </li>
             <li className="nav-item dropdown">
@@ -69,19 +69,19 @@ const Navbar = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <FontAwesomeIcon icon="fa-file-invoice" /> Summary Report
+                <FontAwesomeIcon icon="fa-file-invoice" /> Reports Summary
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdown">
-                <a className="dropdown-item" href="">
+                <Link className="dropdown-item" to="/report/total">
                   <FontAwesomeIcon icon="fa-file-pdf" /> Total Report
-                </a>
-                <a className="dropdown-item" href="">
+                </Link>
+                {/* <Link className="dropdown-item" to="/report/total">
                   <FontAwesomeIcon icon="fa-file-pdf" /> Monthly Report
-                </a>
-                <a className="dropdown-item" href="">
+                </Link>
+                <Link className="dropdown-item" to="/report/total">
                   <FontAwesomeIcon icon="fa-file-pdf" /> Monthly Transaction
                   Report
-                </a>
+                </Link> */}
               </div>
             </li>
             <li className="nav-item dropdown">
@@ -96,23 +96,27 @@ const Navbar = () => {
                 <FontAwesomeIcon icon="fa-power-off" /> Mustafizur Rahman
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdown">
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/settings">
+                  <FontAwesomeIcon icon="fa-cog" /> Settings
+                </Link>
+                <div role="separator" className="dropdown-divider"></div>
+                <Link className="dropdown-item" to="/profile">
                   <FontAwesomeIcon icon="fa-info-circle" /> Profile
-                </a>
+                </Link>
                 <Link className="dropdown-item" to="/feedback">
                   <FontAwesomeIcon icon="fa-comment" /> Feedback
                 </Link>
                 <div role="separator" className="dropdown-divider"></div>
-                <a className="dropdown-item" href="">
+                <Link className="dropdown-item" to="/">
                   <FontAwesomeIcon icon="fa-database" /> DB Backup
-                </a>
-                <a className="dropdown-item" href="">
+                </Link>
+                <Link className="dropdown-item" to="/db/restore">
                   <FontAwesomeIcon icon="fa-window-restore" /> DB Restore
-                </a>
+                </Link>
                 <div role="separator" className="dropdown-divider"></div>
-                <a className="dropdown-item" href="">
+                <Link className="dropdown-item" to="/">
                   <FontAwesomeIcon icon="fa-sign-out-alt" /> Logout
-                </a>
+                </Link>
               </div>
             </li>
           </ul>
