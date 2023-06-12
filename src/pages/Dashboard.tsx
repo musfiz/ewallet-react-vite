@@ -36,7 +36,6 @@ const columns = [
     selector: (row) => row.note,
     style: {
       width: "500px",
-      display: "inline-block",
     },
   },
   {
