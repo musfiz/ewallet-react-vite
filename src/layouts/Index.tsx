@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar.tsx";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
 import AddTransaction from "../pages/AddTransaction";
+import EditTransaction from "../pages/EditTransaction";
 import LoanPayout from "../pages/LoanPayout";
 import AddLoanPayout from "../pages/AddLoanPayout";
 import LendReceive from "../pages/LendReceive";
@@ -19,6 +20,7 @@ const Index = () => {
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/transaction/add" element={<AddTransaction />} />
+            <Route path="/transaction/edit/:id" element={<EditTransaction />} />
             <Route path="/loan/payout" element={<LoanPayout />} />
             <Route path="/loan/payout/add" element={<AddLoanPayout />} />
             <Route path="/lend/Receive" element={<LendReceive />} />

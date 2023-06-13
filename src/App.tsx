@@ -19,8 +19,8 @@ const AdminPage = () => {
 };
 
 const App = () => {
-  const [isLoggedIn] = useState(true);
-  if (isLoggedIn) {
+  const [isToken, setToken] = useState(true);
+  if (isToken) {
     return (
       <>
         <AdminPage />

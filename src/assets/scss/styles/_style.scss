@@ -89,3 +89,17 @@ body {
 .btn-flat{
   border-radius: 2px;
 }
+
+// Datatable styles for global
+.rdt_TableBody{
+  .rdt_TableRow{
+    font-size: 14px !important;
+    .rdt_TableCell{
+      div:first-child{
+        overflow: hidden !important;
+        white-space: normal !important;
+        padding: 10px 0;    
+      }
+    }
+  }
+}

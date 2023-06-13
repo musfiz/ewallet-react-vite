@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Login = () => {
   return (
     <>
@@ -7,7 +9,6 @@ const Login = () => {
             className="h3 mb-3 font-weight-normal"
             style={{ textAlign: "center" }}
           >
-            {" "}
             E-Wallet
           </h1>
 

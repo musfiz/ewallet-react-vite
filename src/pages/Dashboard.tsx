@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
+import customStyles from "../utils/CustomStyles";
 
 const columns = [
   {
@@ -29,7 +30,7 @@ const columns = [
   {
     name: "Time",
     selector: (row) => row.time,
-    width: "10%",
+    width: "9%",
   },
   {
     name: "Note",
@@ -40,9 +41,30 @@ const columns = [
   },
   {
     name: "Action",
-    // button: true,
-    width: "10%",
-    // cell: () => {},
+    width: "11%",
+    button: true,
+    cell: (row: object) => (
+      <>
+        <a
+          className="btn btn-outline-success btn-sm btn-flat"
+          onClick={approvedAmount}
+        >
+          <FontAwesomeIcon icon="fa-check" />
+        </a>
+        <Link
+          className="btn btn-outline-primary btn-sm btn-flat mx-1"
+          to={`/transaction/edit/${row.id}`}
+        >
+          <FontAwesomeIcon icon="fa-edit" />
+        </Link>
+        <button
+          className="btn btn-outline-danger btn-sm btn-flat"
+          onClick={deleteRow}
+        >
+          <FontAwesomeIcon icon="fa-trash" />
+        </button>
+      </>
+    ),
   },
 ];
 
@@ -59,48 +81,15 @@ const data = [
     id: 2,
     note: "BJIT April Salary (credit to ewallet) = 72000/-.",
     amount: "72000",
-    date: "",
-    time: "",
+    date: "06 May, 2023",
+    time: "06:15 PM",
     type: "income",
   },
 ];
 
-const customStyles = {
-  tableWrapper: {
-    style: {
-      display: "table",
-      borderLeft: "1px solid #c5c5c5",
-      borderRight: "1px solid #c5c5c5",
-    },
-  },
-  headRow: {
-    style: {
-      background: "#5f5f5f",
-      color: "#ffffff",
-      fontSize: "13px",
-      fontWeight: "bold",
-    },
-  },
-  headCells: {
-    style: {
-      "&:not(:last-of-type)": {
-        borderRightStyle: "solid",
-        borderRightWidth: "1px",
-        borderRightColor: "#c5c5c5",
-      },
-      justifyContent: "center",
-    },
-  },
-  cells: {
-    style: {
-      "&:not(:last-of-type)": {
-        borderRightStyle: "solid",
-        borderRightWidth: "1px",
-        borderRightColor: "#c5c5c5",
-      },
-    },
-  },
-};
+const approvedAmount = () => {};
+
+const deleteRow = () => {};
 
 const Dashboard = () => {
   return (
