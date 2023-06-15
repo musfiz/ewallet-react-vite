@@ -26,13 +26,13 @@ const App = () => {
   const [user, setUser] = useState({});
   useEffect(() => {
     //check token is in cookie
-    setToken(true);
+    setToken(false);
     // setUser({});
   });
 
   const logout = () => {
     setToken(false);
-    // cookies.remove("jwt_authorization");
+    // cookies.remove("token");
     // setUser({});
   };
 
