@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import user from "./../api/User";
-import Cookies from "universal-cookie";
-const Login = () => {
-  const cookie = new Cookies();
+import serverApi from "../api/ServerApi";
+const Login = ({ change }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,29 +12,36 @@ const Login = () => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    if (formData.email) {
-      setFormDataError({ ...formDataError, email: "" });
+    setFormData((formData) => ({
+      ...formData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleValidation = () => {
+    if (!formData.email) {
+      setFormDataError((formDataError) => ({
+        ...formDataError,
+        email: "Email is required!",
+      }));
     }
-    if (formData.password) {
-      setFormDataError({ ...formDataError, password: "" });
+    if (!formData.password) {
+      setFormDataError((formDataError) => ({
+        ...formDataError,
+        password: "Password is required!",
+      }));
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (user.email === formData.email && user.password === formData.password) {
-    //   cookie.set("token", user.token);
-    // } else if {
-    //   //
-    // }
-    if (!formData.email) {
-      setFormDataError({ ...formDataError, email: "Email is required!" });
-    }
-    if (!formData.password) {
-      setFormDataError({
-        ...formDataError,
-        password: "Passsword is required!",
+    handleValidation();
+    if (formData.email && formData.password) {
+      const response = serverApi.post("login", formData, {});
+      response.then((response) => {
+        if (response.data.success) {
+          change(response.data.data);
+        }
       });
     }
   };

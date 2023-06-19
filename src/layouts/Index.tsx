@@ -18,7 +18,7 @@ const Index = () => {
       <main role="main" className="container">
         <div className="d-flex align-items-center p-3 my-3 bg-white rounded shadow-sm">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/transaction/add" element={<AddTransaction />} />
             <Route path="/transaction/edit/:id" element={<EditTransaction />} />
             <Route path="/loan/payout" element={<LoanPayout />} />

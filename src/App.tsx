@@ -2,52 +2,64 @@ import Login from "./layouts/Login";
 import Index from "./layouts/Index";
 import { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
-
 const cookies = new Cookies();
 
-const LoginPage = () => {
-  return (
-    <>
-      <Login />
-    </>
-  );
-};
-
-const AdminPage = () => {
-  return (
-    <>
-      <Index />
-    </>
-  );
-};
-
 const App = () => {
-  const [isToken, setToken] = useState(false);
+  const [token, setToken] = useState(false);
   const [user, setUser] = useState({});
+
+  const LoginPage = () => {
+    return (
+      <>
+        <Login change={handleState} />
+      </>
+    );
+  };
+
+  const AdminPage = () => {
+    return (
+      <>
+        <Index />
+      </>
+    );
+  };
+
+  let handleState = (data) => {
+    setToken(true);
+    setUser(data.user);
+    cookies.set("token", data.token);
+    cookies.set("user", data.user);
+  };
+
   useEffect(() => {
-    //check token is in cookie
-    setToken(false);
-    // setUser({});
-  });
+    const getUser = cookies.get("user");
+    const getToken = cookies.get("token");
+    setUser(getUser);
+    setToken(true);
+    if (!getUser || !getToken) {
+      logout();
+    }
+  }, [token]);
 
   const logout = () => {
     setToken(false);
-    // cookies.remove("token");
-    // setUser({});
+    setUser({});
   };
 
-  if (isToken) {
+  if (token && user) {
     return (
       <>
         <AdminPage />
       </>
     );
   }
-  return (
-    <>
-      <LoginPage />
-    </>
-  );
+  if (!token && !user) {
+    return (
+      <>
+        <LoginPage />
+      </>
+    );
+  }
 };
 
 export default App;

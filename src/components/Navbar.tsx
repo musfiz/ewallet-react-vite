@@ -1,6 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 const Navbar = () => {
+  const logout = () => {
+    cookies.remove("token");
+    cookies.remove("user");
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
@@ -114,7 +120,7 @@ const Navbar = () => {
                   <FontAwesomeIcon icon="fa-window-restore" /> DB Restore
                 </Link>
                 <div role="separator" className="dropdown-divider"></div>
-                <Link className="dropdown-item" to="/">
+                <Link className="dropdown-item" to="/" onClick={logout}>
                   <FontAwesomeIcon icon="fa-sign-out-alt" /> Logout
                 </Link>
               </div>
