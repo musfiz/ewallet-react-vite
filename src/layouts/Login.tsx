@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import serverApi from "../api/ServerApi";
-const Login = ({ change }) => {
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+import { useNavigate } from "react-router-dom";
+
+const Login = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -40,7 +46,12 @@ const Login = ({ change }) => {
       const response = serverApi.post("login", formData, {});
       response.then((response) => {
         if (response.data.success) {
-          change(response.data.data);
+          // change(response.data.data);
+          cookies.set("token", response.data.data.token);
+          cookies.set("user", response.data.data.user);
+          setTimeout(() => {
+            navigate("/dashboard", { replace: false });
+          }, 2000);
         }
       });
     }

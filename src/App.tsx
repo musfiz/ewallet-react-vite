@@ -8,58 +8,34 @@ const App = () => {
   const [token, setToken] = useState(false);
   const [user, setUser] = useState({});
 
-  const LoginPage = () => {
+  const Page = () => {
     return (
       <>
-        <Login change={handleState} />
+        <Index user={user} />
       </>
     );
   };
 
-  const AdminPage = () => {
-    return (
-      <>
-        <Index />
-      </>
-    );
-  };
+  // const logout = () => {
+  //   setToken(null);
+  //   setUser({});
+  // };
 
-  let handleState = (data) => {
-    setToken(true);
-    setUser(data.user);
-    cookies.set("token", data.token);
-    cookies.set("user", data.user);
-  };
+  // useEffect(() => {
+  //   const getUser = cookies.get("user");
+  //   const getToken = cookies.get("token");
+  //   if (!getUser || !getToken) {
+  //     logout();
+  //   }
+  //   setUser(getUser);
+  //   setToken(true);
+  // }, [token]);
 
-  useEffect(() => {
-    const getUser = cookies.get("user");
-    const getToken = cookies.get("token");
-    setUser(getUser);
-    setToken(true);
-    if (!getUser || !getToken) {
-      logout();
-    }
-  }, [token]);
-
-  const logout = () => {
-    setToken(false);
-    setUser({});
-  };
-
-  if (token && user) {
-    return (
-      <>
-        <AdminPage />
-      </>
-    );
-  }
-  if (!token && !user) {
-    return (
-      <>
-        <LoginPage />
-      </>
-    );
-  }
+  return (
+    <>
+      <Page />
+    </>
+  );
 };
 
 export default App;
