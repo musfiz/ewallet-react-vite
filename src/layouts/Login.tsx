@@ -1,6 +1,20 @@
 import { useState, useEffect } from "react";
 import serverApi from "../api/ServerApi";
-const Login = ({ change }) => {
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+import { useNavigate } from "react-router-dom";
+
+const Login = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isAuth = cookies.get("isAuth");
+    const user = cookies.get("user");
+    if (isAuth && user) {
+      navigate("/dashboard");
+    }
+  }, []);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -40,7 +54,10 @@ const Login = ({ change }) => {
       const response = serverApi.post("login", formData, {});
       response.then((response) => {
         if (response.data.success) {
-          change(response.data.data);
+          // change(response.data.data);
+          cookies.set("user", response.data.data.user);
+          cookies.set("isAuth", true);
+          navigate("/dashboard");
         }
       });
     }
