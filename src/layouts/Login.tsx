@@ -50,7 +50,7 @@ const Login = () => {
           cookies.set("token", response.data.data.token);
           cookies.set("user", response.data.data.user);
           setTimeout(() => {
-            navigate("/dashboard", { replace: false });
+            navigate("/dashboard", { replace: true });
           }, 2000);
         }
       });

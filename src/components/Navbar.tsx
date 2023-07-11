@@ -6,7 +6,6 @@ const Navbar = () => {
   const logout = () => {
     cookies.remove("token");
     cookies.remove("user");
-    window.location.reload();
   };
   return (
     <>
