@@ -7,6 +7,14 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const isAuth = cookies.get("isAuth");
+    const user = cookies.get("user");
+    if (isAuth && user) {
+      navigate("/dashboard");
+    }
+  }, []);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -47,11 +55,9 @@ const Login = () => {
       response.then((response) => {
         if (response.data.success) {
           // change(response.data.data);
-          cookies.set("token", response.data.data.token);
           cookies.set("user", response.data.data.user);
-          setTimeout(() => {
-            navigate("/dashboard", { replace: true });
-          }, 2000);
+          cookies.set("isAuth", true);
+          navigate("/dashboard");
         }
       });
     }

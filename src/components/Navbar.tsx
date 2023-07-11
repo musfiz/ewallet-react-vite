@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 const Navbar = () => {
   const logout = () => {
-    cookies.remove("token");
+    cookies.remove("isAuth");
     cookies.remove("user");
   };
   return (

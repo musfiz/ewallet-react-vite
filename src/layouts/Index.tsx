@@ -30,24 +30,19 @@ const Layout = () => {
 };
 
 const Index = () => {
-  const [token, setToken] = useState(false);
-  const [user, setUser] = useState({});
   const navigate = useNavigate();
-
+  const user = cookies.get("user");
   const logout = () => {
-    setToken(false);
-    setUser({});
+    cookies.remove("isAuth");
+    cookies.remove("user");
   };
 
   useEffect(() => {
-    const getUser = cookies.get("user");
-    const getToken = cookies.get("token");
-    setUser(getUser);
-    setToken(true);
-    if (!getToken && !getUser) {
-      navigate("/");
+    if (!user) {
+      logout();
+      navigate("/", { replace: true });
     }
-  }, []);
+  }, [user]);
 
   return (
     <Routes>
