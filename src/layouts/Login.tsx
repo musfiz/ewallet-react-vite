@@ -3,10 +3,10 @@ import serverApi from "../api/ServerApi";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Login = () => {
   const navigate = useNavigate();
-
   useEffect(() => {
     const isAuth = cookies.get("isAuth");
     const user = cookies.get("user");
@@ -14,6 +14,8 @@ const Login = () => {
       navigate("/dashboard");
     }
   }, []);
+
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -49,10 +51,12 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmit(true);
     handleValidation();
     if (formData.email && formData.password) {
       const response = serverApi.post("login", formData, {});
       response.then((response) => {
+        setIsSubmit(false);
         if (response.data.success) {
           // change(response.data.data);
           cookies.set("user", response.data.data.user);
@@ -127,9 +131,16 @@ const Login = () => {
             )}
           </div>
           <div className="d-grid">
-            <button className="btn btn-success btn-flat" type="submit">
-              <i className="fas fa-sign-in-alt"></i> Sign in
-            </button>
+            {!isSubmit ? (
+              <button className="btn btn-success btn-flat" type="submit">
+                <FontAwesomeIcon icon="fa-sign-in-alt" /> Sign in
+              </button>
+            ) : (
+              <button className="btn btn-success btn-flat" disabled>
+                <span className="spinner-border spinner-border-sm"></span>{" "}
+                Loading...
+              </button>
+            )}
           </div>
 
           <hr />

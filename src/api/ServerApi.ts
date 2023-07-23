@@ -5,8 +5,9 @@ import Cookies from "universal-cookie";
 const cookie = new Cookies();
 
 async function getCommonHeader() {
+  const user = cookie.get("user");
   return {
-    authorization: "Bearer " + cookie.get("token"),
+    authorization: "Bearer " + user.token,
     "content-type": "application/json",
   };
 }

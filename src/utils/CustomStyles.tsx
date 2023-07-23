@@ -2,8 +2,8 @@ const customStyles = {
   tableWrapper: {
     style: {
       display: "table",
-      borderLeft: "1px solid #c5c5c5",
-      borderRight: "1px solid #c5c5c5",
+      // borderLeft: "1px solid #c5c5c5",
+      // borderRight: "1px solid #c5c5c5",
     },
   },
   headRow: {
@@ -36,6 +36,8 @@ const customStyles = {
   rows: {
     style: {
       fontWeight: "bold",
+      borderLeft: "1px solid #c5c5c5",
+      borderRight: "1px solid #c5c5c5",
     },
   },
 };

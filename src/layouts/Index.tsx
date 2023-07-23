@@ -15,6 +15,7 @@ import Settings from "../pages/Settings";
 import Profile from "../pages/Profile";
 import Feedback from "../pages/Feedback";
 import DbRestore from "../pages/DbRestore";
+import NotFound from "../pages/NotFound";
 
 const Layout = () => {
   return (
@@ -58,6 +59,7 @@ const Index = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/db/restore" element={<DbRestore />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

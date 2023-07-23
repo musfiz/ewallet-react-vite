@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
 import customStyles from "../utils/CustomStyles";
+import { useState, useEffect } from "react";
+import serverApi from "../api/ServerApi";
 
 const columns = [
   {
@@ -68,30 +70,29 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    id: 1,
-    note: "Bike Wheel = 120/-, Breakfast = 55/-, Ox = 120/-, Sopno = 1005/-, Killer food = 280/-, Onion= 350/-, Potato = 120/-, Vegetable = 100/-, Chili = 20/-, Banana = 80/-, flour = 130/-, Mim daraz = 1362/-, Bike oil = 650/-, Shayan Cake = 2000/-, Mim Loan = 200, Shayan Horse = 700/-, Mim = 500/-, Daraz = 693/-.",
-    amount: "8457",
-    date: "07 May, 2023",
-    time: "05:30 PM",
-    type: "expense",
-  },
-  {
-    id: 2,
-    note: "BJIT April Salary (credit to ewallet) = 72000/-.",
-    amount: "72000",
-    date: "06 May, 2023",
-    time: "06:15 PM",
-    type: "income",
-  },
-];
-
 const approvedAmount = () => {};
 
 const deleteRow = () => {};
 
 const Dashboard = () => {
+  const [data, setData] = useState([{}]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = () => {
+    const response = serverApi.get("transaction/monthly", {});
+    response.then((response) => {
+      if (response.data.success) {
+        setData(response.data.data.transaction);
+        setLoading(false);
+      }
+    });
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="container">
@@ -179,6 +180,7 @@ const Dashboard = () => {
             {/* DataTable */}
             <DataTable
               className="mt-5"
+              progressPending={loading}
               pagination
               columns={columns}
               data={data}
