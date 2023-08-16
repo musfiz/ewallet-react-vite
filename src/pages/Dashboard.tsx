@@ -119,8 +119,14 @@ const Dashboard = () => {
   const searchTransaction = () => {
     if(!year){
       Toast("Please select a year first!", "info")
+    }else{
+      let option = {
+        'type': type,
+        'year': year,
+        'month': month
+      }
+      fetchData(option);
     }
-    // fetchData();
   }
 
   useEffect(() => {
