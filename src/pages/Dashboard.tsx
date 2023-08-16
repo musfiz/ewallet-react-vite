@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import customStyles from "../utils/CustomStyles";
 import { useState, useEffect } from "react";
 import serverApi from "../api/ServerApi";
+import Toast from "../utils/Toast.tsx";
+
 
 const columns = [
   {
@@ -74,22 +76,54 @@ const approvedAmount = () => {};
 
 const deleteRow = () => {};
 
-const Dashboard = () => {
-  const [data, setData] = useState([{}]);
-  const [loading, setLoading] = useState(false);
+const monthList =  ["January", "February", "March", "April", "May",
+"June", "July", "August", "September", "October", "November", "December"];
 
-  const fetchData = () => {
-    const response = serverApi.get("transaction/monthly", {});
+const yearList = [];
+for(let i= 2019; i <= 2030; i++){
+  yearList.push(i);
+}
+
+
+
+const Dashboard = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [type, setType] = useState('');
+  const [year, setYear] = useState('');
+  const [month, setMonth] = useState('');
+
+  const fetchData = (option = {}) => {
+    setLoading(true);
+    const response = serverApi.get("transaction/monthly", option);
     response.then((response) => {
+      setLoading(false);
       if (response.data.success) {
-        setData(response.data.data.transaction);
-        setLoading(false);
+        setData(response.data.data.transaction);        
       }
     });
   };
 
+  const onChangeType = (e) => {
+    setType(e.target.value)
+  }
+
+  const onChangeYear = (e) => {
+    setYear(e.target.value)
+  }
+
+  const onChangeMonth = (e) => {
+    setMonth(e.target.value)
+  }
+
+  const searchTransaction = () => {
+    if(!year){
+      Toast("Please select a year first!", "info")
+    }
+    // fetchData();
+  }
+
   useEffect(() => {
-    setLoading(true);
     fetchData();
   }, []);
 
@@ -139,31 +173,36 @@ const Dashboard = () => {
           <div className="col-auto me-3 gx-4">
             <div className="row">
               <div className="col-auto gx-1">
-                <select className="form-select form-select-sm">
-                  <option>Transaction Type</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select className="form-select form-select-sm" onChange={onChangeType}>
+                  <option value="">Transaction Type</option>
+                  <option value="Income">Income</option>
+                  <option value="Expense">Expense</option>
+                  <option value="Loan">Loan</option>
+                  <option value="Borrow">Borrow</option>
                 </select>
               </div>
               <div className="col-auto gx-1">
-                <select className="form-select form-select-sm">
-                  <option>Select Year</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select className="form-select form-select-sm" onChange={onChangeYear}>
+                  <option value="">Select Year</option>  
+                  {yearList.map((item)=> {
+                    return(
+                      <option key={item} value={item}>{item}</option>
+                    )
+                  })}
                 </select>
               </div>
               <div className="col-auto gx-1">
-                <select className="form-select form-select-sm">
-                  <option>Select Month</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select className="form-select form-select-sm" onChange={onChangeMonth}>
+                  <option value="">Select Month</option>
+                  {monthList.map((month, index) => {
+                    return (
+                      <option key={index} value={month}>{month}</option>
+                    );
+                  })}
                 </select>
               </div>
               <div className="col-auto gx-1">
-                <button className="btn btn-primary btn-sm btn-flat me-1">
+                <button className="btn btn-primary btn-sm btn-flat me-1" onClick={searchTransaction}>
                   <FontAwesomeIcon icon="fa-search" /> Search Transaction
                 </button>
               </div>

@@ -1,8 +1,10 @@
 import Index from "./layouts/Index";
+import { ToastContainer } from "react-toastify"
 
 const Page = () => {
   return (
     <>
+      <ToastContainer/>
       <Index />
     </>
   );
@@ -11,6 +13,7 @@ const Page = () => {
 const App = () => {
   return (
     <>
+      <ToastContainer/>
       <Page />
     </>
   );

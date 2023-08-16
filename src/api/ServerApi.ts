@@ -6,10 +6,17 @@ const cookie = new Cookies();
 
 async function getCommonHeader() {
   const user = cookie.get("user");
-  return {
-    authorization: "Bearer " + user.token,
-    "content-type": "application/json",
-  };
+  if(user){
+    return {
+      authorization: "Bearer " + user.token,
+      "content-type": "application/json",
+    };
+  }else{
+    return {
+      "content-type": "application/json",
+    };
+  }
+  
 }
 
 export default {
