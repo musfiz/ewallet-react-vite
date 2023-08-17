@@ -126,6 +126,16 @@ const Dashboard = () => {
     fetchData(option);
   }
 
+  const resetTransaction = () => {
+    setType('');
+    setYear('');
+    setMonth('');
+    option.type = ''
+    option.year = ''
+    option.month = ''
+    fetchData(option);
+  }
+
   useEffect(() => {
     fetchData(option);
   }, []);
@@ -185,7 +195,7 @@ const Dashboard = () => {
                 </select>
               </div>
               <div className="col-auto gx-1">
-                <select className="form-select form-select-sm" onChange={onChangeYear}>
+                <select value={year} className="form-select form-select-sm" onChange={onChangeYear}>
                   <option value="">Select Year</option>  
                   {yearList.map((item)=> {
                     return(
@@ -195,7 +205,7 @@ const Dashboard = () => {
                 </select>
               </div>
               <div className="col-auto gx-1">
-                <select className="form-select form-select-sm" onChange={onChangeMonth}>
+                <select value={month} className="form-select form-select-sm" onChange={onChangeMonth}>
                   <option value="">Select Month</option>
                   {monthList.map((month, index) => {
                     return (
@@ -210,7 +220,7 @@ const Dashboard = () => {
                 </button>
               </div>
               <div className="col g-0">
-                <button className="btn btn-secondary btn-sm btn-flat">
+                <button className="btn btn-secondary btn-sm btn-flat" onClick={resetTransaction}>
                   <FontAwesomeIcon icon="fa-refresh" /> Reset
                 </button>
               </div>
@@ -235,6 +245,7 @@ const Dashboard = () => {
               persistTableHead ={true}
               striped={true}
               highlightOnHover={true}
+              // pointerOnHover={true}
             />
             {/* DataTable */}
           </div>
