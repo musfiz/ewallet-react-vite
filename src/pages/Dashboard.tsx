@@ -233,15 +233,15 @@ const Dashboard = () => {
             <hr />
             <DataTable
               progressPending={loading}
-              pagination
               columns={columns}
               data={data}
               selectableRows
               customStyles={customStyles}
               dense
-              paginationTotalRows={30}
-              paginationPerPage={30}
-              paginationRowsPerPageOptions={[30, 50, 100, 200]}
+              pagination
+              // paginationServer
+              paginationPerPage={10}
+              paginationRowsPerPageOptions={[10, 50, 100, 200]}
               persistTableHead ={true}
               striped={true}
               highlightOnHover={true}
