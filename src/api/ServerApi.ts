@@ -38,7 +38,8 @@ export default {
     const url = BASE_URL + endpoint;
     const option = {
       headers: await getCommonHeader(),
+      params: additionalOption ?? ''
     };
-    return axios.get(url, { ...option, ...additionalOption });
+    return axios.get(url, { ...option});
   },
 };

@@ -11,19 +11,19 @@ const option:object = {
   theme: "colored",
 }
 
-const Toast = (message:string, type:string = '') => {
+const notify = (message:string, type:string = '') => {
   switch (type){
     case "success":
-      return toast.success(<div>{message}</div>, option);
+      return toast.success(<div><strong>{message}</strong></div>, option);
     case "info":
-      return toast.info(<div>{message}</div>, option);
+      return toast.info(<div><strong>{message}</strong></div>, option);
     case "warning":
-      return toast.warning(<div>{message}</div>, option);
+      return toast.warning(<div><strong>{message}</strong></div>, option);
     case "error":
-      return toast.error(<div>{message}</div>, option);
+      return toast.error(<div><strong>{message}</strong></div>, option);
     default:
       return toast(<div>Toast type not defined!</div>, option);
   }
 }
 
-export default Toast;
+export default notify;

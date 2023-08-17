@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import customStyles from "../utils/CustomStyles";
 import { useState, useEffect } from "react";
 import serverApi from "../api/ServerApi";
-import Toast from "../utils/Toast.tsx";
+import notify from "../utils/Toast.tsx";
 
 
 const columns = [
@@ -93,6 +93,12 @@ const Dashboard = () => {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
 
+  const option = {
+    type: type,
+    year: year,
+    month: month
+  }
+
   const fetchData = (option = {}) => {
     setLoading(true);
     const response = serverApi.get("transaction/monthly", option);
@@ -117,20 +123,11 @@ const Dashboard = () => {
   }
 
   const searchTransaction = () => {
-    if(!year){
-      Toast("Please select a year first!", "info")
-    }else{
-      let option = {
-        'type': type,
-        'year': year,
-        'month': month
-      }
-      fetchData(option);
-    }
+    fetchData(option);
   }
 
   useEffect(() => {
-    fetchData();
+    fetchData(option);
   }, []);
 
   return (
@@ -202,7 +199,7 @@ const Dashboard = () => {
                   <option value="">Select Month</option>
                   {monthList.map((month, index) => {
                     return (
-                      <option key={index} value={month}>{month}</option>
+                      <option key={index} value={index+1}>{month}</option>
                     );
                   })}
                 </select>
@@ -221,10 +218,10 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-12">
+          <div className="col-12">            
             {/* DataTable */}
+            <hr />
             <DataTable
-              className="mt-5"
               progressPending={loading}
               pagination
               columns={columns}
@@ -232,6 +229,12 @@ const Dashboard = () => {
               selectableRows
               customStyles={customStyles}
               dense
+              paginationTotalRows={30}
+              paginationPerPage={30}
+              paginationRowsPerPageOptions={[30, 50, 100, 200]}
+              persistTableHead ={true}
+              striped={true}
+              highlightOnHover={true}
             />
             {/* DataTable */}
           </div>
