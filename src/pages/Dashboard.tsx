@@ -1,11 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
-import customStyles from "../utils/CustomStyles";
 import { useState, useEffect } from "react";
 import serverApi from "../api/ServerApi";
 import notify from "../utils/Toast.tsx";
-
+import CustomDatatable from "../utils/Datatable.tsx";
 
 const columns = [
   {
@@ -231,22 +229,7 @@ const Dashboard = () => {
           <div className="col-12">            
             {/* DataTable */}
             <hr />
-            <DataTable
-              progressPending={loading}
-              columns={columns}
-              data={data}
-              selectableRows
-              customStyles={customStyles}
-              dense
-              pagination
-              // paginationServer
-              paginationPerPage={10}
-              paginationRowsPerPageOptions={[10, 50, 100, 200]}
-              persistTableHead ={true}
-              striped={true}
-              highlightOnHover={true}
-              // pointerOnHover={true}
-            />
+            <CustomDatatable columns={columns} data={data} loading={loading} />
             {/* DataTable */}
           </div>
         </div>
