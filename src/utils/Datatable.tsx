@@ -5,6 +5,7 @@ const CustomDatatable = (props:object) => {
   const data = props.data;
   const columns = props.columns;
   const loading =  props.loading;
+  const rowStyles = props.rowStyles;
   return(
     <>
       <DataTable
@@ -22,6 +23,7 @@ const CustomDatatable = (props:object) => {
         striped={true}
         highlightOnHover={true}
         // pointerOnHover={true}
+        conditionalRowStyles={rowStyles}
       />
     </>
   );

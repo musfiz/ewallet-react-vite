@@ -46,29 +46,53 @@ const columns = [
     width: "11%",
     button: true,
     cell: (row: object) => (
+      row.status == 1 ? 
       <>
-        <a
-          className="btn btn-outline-success btn-sm btn-flat"
-          onClick={approvedAmount}
-        >
-          <FontAwesomeIcon icon="fa-check" />
-        </a>
-        <Link
-          className="btn btn-outline-primary btn-sm btn-flat mx-1"
-          to={`/transaction/edit/${row.id}`}
-        >
-          <FontAwesomeIcon icon="fa-edit" />
-        </Link>
-        <button
-          className="btn btn-outline-danger btn-sm btn-flat"
-          onClick={deleteRow}
-        >
-          <FontAwesomeIcon icon="fa-trash" />
-        </button>
+        <h6><span className="badge bg-success">Approved</span></h6> 
+      </> : 
+      <>
+         <a
+            className="btn btn-outline-success btn-sm btn-flat"
+            onClick={approvedAmount}
+          >
+            <FontAwesomeIcon icon="fa-check" />
+          </a>
+          <Link
+            className="btn btn-outline-primary btn-sm btn-flat mx-1"
+            to={`/transaction/edit/${row.id}`}
+          >
+            <FontAwesomeIcon icon="fa-edit" />
+          </Link>
+          <button
+            className="btn btn-outline-danger btn-sm btn-flat"
+            onClick={deleteRow}
+          >
+            <FontAwesomeIcon icon="fa-trash" />
+          </button>
       </>
     ),
   },
 ];
+
+const rowStyles =  [
+  {
+    when: row => row.type == 'Income',
+    style: row => ({backgroundColor: '#d4edda', color: '#155724', borderColor: '#c3e6cb'})
+    // style: row => ({ backgroundColor: row.isSpecial ? '#f8d7da' : '#f8d7da' }),
+  },
+  {
+    when: row => row.type == 'Expense',
+    style: row => ({backgroundColor: '#f8d7da', color: '#721c24', borderColor: '#f5c6cb'})
+  },
+  {
+    when: row => row.type == 'Loan',
+    style: row => ({backgroundColor: '#fff3cd ', color: '#856404', borderColor: '#d6d8db'})
+  },
+  {
+    when: row => row.type == 'Lend',
+    style: row => ({backgroundColor: '#e2e3e5', color: '#383d41', borderColor: '#d6d8db'})
+  },
+]
 
 const approvedAmount = () => {};
 
@@ -85,7 +109,8 @@ for(let i= 2019; i <= 2030; i++){
 
 
 const Dashboard = () => {
-  const [data, setData] = useState([]);
+  const [transactionData, transactionSetData] = useState([]);
+  const [accountData, accountSetData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [type, setType] = useState('');
   const [year, setYear] = useState('');
@@ -103,7 +128,8 @@ const Dashboard = () => {
     response.then((response) => {
       setLoading(false);
       if (response.data.success) {
-        setData(response.data.data.transaction);        
+        transactionSetData(response.data.data.transaction);  
+        accountSetData(response.data.data.account);    
       }
     });
   };
@@ -227,10 +253,8 @@ const Dashboard = () => {
         </div>
         <div className="row">
           <div className="col-12">            
-            {/* DataTable */}
             <hr />
-            <CustomDatatable columns={columns} data={data} loading={loading} />
-            {/* DataTable */}
+            <CustomDatatable columns={columns} data={transactionData} loading={loading} rowStyles={rowStyles}/>
           </div>
         </div>
       </div>
