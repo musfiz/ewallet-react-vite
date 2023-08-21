@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import notify from "../utils/Toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -55,15 +56,22 @@ const Login = () => {
     handleValidation();
     if (formData.email && formData.password) {
       const response = serverApi.post("login", formData, {});
-      response.then((response) => {
-        setIsSubmit(false);
-        if (response.data.success) {
-          // change(response.data.data);
-          cookies.set("user", response.data.data.user);
-          cookies.set("isAuth", true);
-          navigate("/dashboard");
-        }
-      });
+      response
+        .then((response) => {
+          setIsSubmit(false);
+          if (response.data.success) {
+            // change(response.data.data);
+            cookies.set("user", response.data.data.user);
+            cookies.set("isAuth", true);
+            navigate("/dashboard");
+          }
+        })
+        .catch((error) => {
+          setIsSubmit(false);
+          if (!error.response.data.success) {
+            notify(error.response.data.message, "error");
+          }
+        });
     }
   };
 
