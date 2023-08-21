@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const addTransaction = () => {
+const editTransaction = () => {
   return (
     <>
       <div className="container">
@@ -77,4 +77,4 @@ const addTransaction = () => {
     </>
   );
 };
-export default addTransaction;
+export default editTransaction;

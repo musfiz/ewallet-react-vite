@@ -6,17 +6,16 @@ const cookie = new Cookies();
 
 async function getCommonHeader() {
   const user = cookie.get("user");
-  if(user){
+  if (user) {
     return {
       authorization: "Bearer " + user.token,
       "content-type": "application/json",
     };
-  }else{
+  } else {
     return {
       "content-type": "application/json",
     };
   }
-  
 }
 
 export default {
@@ -34,12 +33,13 @@ export default {
       ...additionalOption,
     });
   },
+
   get: async function (endpoint: string, additionalOption: object) {
     const url = BASE_URL + endpoint;
     const option = {
       headers: await getCommonHeader(),
-      params: additionalOption ?? ''
+      params: additionalOption ?? "",
     };
-    return axios.get(url, { ...option});
+    return axios.get(url, { ...option });
   },
 };
