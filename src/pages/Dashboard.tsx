@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import serverApi from "../api/ServerApi";
@@ -43,7 +42,6 @@ const columns = [
   {
     name: "Action",
     width: "11%",
-    button: true,
     cell: (row: object) =>
       row.status == 1 ? (
         <>
@@ -57,19 +55,19 @@ const columns = [
             className="btn btn-outline-success btn-sm btn-flat"
             onClick={approvedAmount}
           >
-            <FontAwesomeIcon icon="fa-check" />
+            <i className="bi bi-check2"></i>
           </a>
           <Link
             className="btn btn-outline-primary btn-sm btn-flat mx-1"
             to={`/transaction/edit/${row.id}`}
           >
-            <FontAwesomeIcon icon="fa-edit" />
+            <i className="bi bi-pencil-square"></i>
           </Link>
           <button
             className="btn btn-outline-danger btn-sm btn-flat"
             onClick={deleteRow}
           >
-            <FontAwesomeIcon icon="fa-trash" />
+           <i className="bi bi-trash3"></i>
           </button>
         </>
       ),
@@ -131,7 +129,7 @@ const monthList = [
   "December",
 ];
 
-const yearList = [];
+const yearList:number[] = [];
 for (let i = 2019; i <= 2030; i++) {
   yearList.push(i);
 }
@@ -202,8 +200,8 @@ const Dashboard = () => {
         </div>
         <hr />
         <div className="row justify-content-start">
-          {accountData.map((item) => (
-            <div className="col-3">
+          {accountData.map((item, index) => (
+            <div className="col-3" key={index}>
               <h4 style={{ color: item.color }} className="h4 text-center">
                 {item.total} <br /> <span>{item.name}</span>
               </h4>
@@ -216,10 +214,10 @@ const Dashboard = () => {
               className="btn btn-success btn-sm btn-flat me-1"
               to="/transaction/add"
             >
-              <FontAwesomeIcon icon="fa-plus" /> Add Transaction
+              <i className="bi bi-plus-circle"></i> Add Transaction
             </Link>
             <button className="btn btn-primary btn-sm btn-flat">
-              <FontAwesomeIcon icon="fa-file-pdf" /> PDF
+              <i className="bi bi-file-earmark-pdf"></i> PDF
             </button>
           </div>
           <div className="col-auto me-3 gx-4">
@@ -269,7 +267,7 @@ const Dashboard = () => {
                   className="btn btn-primary btn-sm btn-flat me-1"
                   onClick={searchTransaction}
                 >
-                  <FontAwesomeIcon icon="fa-search" /> Search Transaction
+                  <i className="bi bi-search"></i> Search Transaction
                 </button>
               </div>
               <div className="col g-0">
@@ -277,7 +275,7 @@ const Dashboard = () => {
                   className="btn btn-secondary btn-sm btn-flat"
                   onClick={resetTransaction}
                 >
-                  <FontAwesomeIcon icon="fa-refresh" /> Reset
+                  <i className="bi bi-arrow-repeat"></i> Reset
                 </button>
               </div>
             </div>

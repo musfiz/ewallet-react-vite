@@ -3,7 +3,6 @@ import serverApi from "../api/ServerApi";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import notify from "../utils/Toast";
 
 const Login = () => {
@@ -50,7 +49,7 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
     setIsSubmit(true);
     handleValidation();
@@ -141,7 +140,7 @@ const Login = () => {
           <div className="d-grid">
             {!isSubmit ? (
               <button className="btn btn-success btn-flat" type="submit">
-                <FontAwesomeIcon icon="fa-sign-in-alt" /> Sign in
+                <i className="bi bi-box-arrow-in-right"></i> Sign in
               </button>
             ) : (
               <button className="btn btn-success btn-flat" disabled>

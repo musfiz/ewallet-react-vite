@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const editTransaction = () => {
   return (
     <>
@@ -13,7 +12,7 @@ const editTransaction = () => {
               className="btn btn-outline-primary btn-sm btn-flat me-1"
               to="/dashboard"
             >
-              <FontAwesomeIcon icon="fa-plus" /> View Transaction
+              <i className="bi bi-plus-circle"></i> View Transaction
             </Link>
           </div>
         </div>

@@ -17,7 +17,7 @@ const customStyles = {
   headCells: {
     style: {
       "&:not(:last-of-type)": {
-        borderRightStyle: "solid",
+        // borderRightStyle: "solid",
         borderRightWidth: "1px",
         borderRightColor: "#c5c5c5",
       },
@@ -27,7 +27,7 @@ const customStyles = {
   cells: {
     style: {
       "&:not(:last-of-type)": {
-        borderRightStyle: "solid",
+        // borderRightStyle: "solid",
         borderRightWidth: "1px",
         borderRightColor: "#c5c5c5",
       },

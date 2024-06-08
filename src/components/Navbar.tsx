@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -11,7 +10,7 @@ const Navbar = () => {
     <>
       <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
         <a className="navbar-brand" href="">
-          <FontAwesomeIcon icon="fa-wallet" /> E Wallet
+          <i className="bi bi-wallet"></i> E Wallet
         </a>
         <button
           className="navbar-toggler p-0 border-0"
@@ -25,7 +24,7 @@ const Navbar = () => {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               <Link className="nav-link" to="/dashboard">
-                <FontAwesomeIcon icon="fa-tachometer-alt" /> Dashboard
+              <i className="bi bi-speedometer2"></i> Dashboard
                 <span className="sr-only">(current)</span>
               </Link>
             </li>
@@ -38,14 +37,14 @@ const Navbar = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <FontAwesomeIcon icon="fa-hand-holding-usd" /> Received/Given
+                <i className="bi bi-cash-coin"></i> Received/Given
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdown01">
                 <Link className="dropdown-item" to="/loan/payout">
-                  <FontAwesomeIcon icon="fa-money-bill-alt" /> Loan Payout
+                <i className="bi bi-cash-stack"></i> Loan Payout
                 </Link>
                 <Link className="dropdown-item" to="/lend/receive">
-                  <FontAwesomeIcon icon="fa-credit-card" /> Lend Received
+                <i className="bi bi-credit-card-2-front"></i> Lend Received
                 </Link>
               </div>
             </li>
@@ -58,11 +57,11 @@ const Navbar = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <FontAwesomeIcon icon="fa-history" /> History
+                <i className="bi bi-clock-history"></i> History
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdown">
                 <Link className="dropdown-item" to="/">
-                  <FontAwesomeIcon icon="fa-exchange-alt" /> Transaction History
+                <i className="bi bi-currency-exchange"></i> Transaction History
                 </Link>
               </div>
             </li>
@@ -75,17 +74,17 @@ const Navbar = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <FontAwesomeIcon icon="fa-file-invoice" /> Reports Summary
+                <i className="bi bi-receipt"></i> Reports Summary
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdown">
                 <Link className="dropdown-item" to="/report/total">
-                  <FontAwesomeIcon icon="fa-file-pdf" /> Total Report
+                <i className="bi bi-filetype-pdf"></i> Total Report
                 </Link>
                 {/* <Link className="dropdown-item" to="/report/total">
-                  <FontAwesomeIcon icon="fa-file-pdf" /> Monthly Report
+                  <i className="bi bi-filetype-pdf"></i> Monthly Report
                 </Link>
                 <Link className="dropdown-item" to="/report/total">
-                  <FontAwesomeIcon icon="fa-file-pdf" /> Monthly Transaction
+                  <i className="bi bi-filetype-pdf"></i> Monthly Transaction
                   Report
                 </Link> */}
               </div>
@@ -99,29 +98,29 @@ const Navbar = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <FontAwesomeIcon icon="fa-power-off" /> Mustafizur Rahman
+                <i className="bi bi-person-circle"></i> Mustafizur Rahman
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdown">
                 <Link className="dropdown-item" to="/settings">
-                  <FontAwesomeIcon icon="fa-cog" /> Settings
+                  <i className="bi bi-gear-wide-connected"></i> Settings
                 </Link>
                 <div role="separator" className="dropdown-divider"></div>
                 <Link className="dropdown-item" to="/profile">
-                  <FontAwesomeIcon icon="fa-info-circle" /> Profile
+                  <i className="bi bi-info-circle"></i> Profile
                 </Link>
                 <Link className="dropdown-item" to="/feedback">
-                  <FontAwesomeIcon icon="fa-comment" /> Feedback
+                  <i className="bi bi-chat-text"></i> Feedback
                 </Link>
                 <div role="separator" className="dropdown-divider"></div>
                 <Link className="dropdown-item" to="/">
-                  <FontAwesomeIcon icon="fa-database" /> DB Backup
+                  <i className="bi bi-database-fill-down"></i> DB Backup
                 </Link>
                 <Link className="dropdown-item" to="/db/restore">
-                  <FontAwesomeIcon icon="fa-window-restore" /> DB Restore
+                  <i className="bi bi-database-up"></i> DB Restore
                 </Link>
                 <div role="separator" className="dropdown-divider"></div>
                 <Link className="dropdown-item" to="/" onClick={logout}>
-                  <FontAwesomeIcon icon="fa-sign-out-alt" /> Logout
+                  <i className="bi bi-box-arrow-left"></i> Logout
                 </Link>
               </div>
             </li>
