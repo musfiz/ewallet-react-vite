@@ -187,7 +187,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    fetchData(option);
+    fetchData();
   }, []);
 
   return (

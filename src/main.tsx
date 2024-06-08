@@ -9,10 +9,8 @@ import "./assets/scss/app.scss";
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render( 
     <BrowserRouter>
       <App />
-    </BrowserRouter>
-  </React.StrictMode>
+    </BrowserRouter> 
 );
